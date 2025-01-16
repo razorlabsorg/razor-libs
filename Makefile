@@ -9,7 +9,7 @@ ARTIFACTS_LEVEL ?= all
 DEFAULT_FUND_AMOUNT ?= 100000000
 DEFAULT_FUNDER_PRIVATE_KEY ?= 0x0
 DEV_ACCOUNT ?= 0x0133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a
-LIBS_ADDRESS ?= 0x0
+LIBS_ADDRESS ?= 0xd7f96eefaebffd142905a66d68ea836927b56a95cb424e945ef28cd9353a5425
 
 # ============================= CLEAN ============================= #
 clean:
@@ -23,7 +23,7 @@ compile:
 	--move-2 \
 	--save-metadata \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
-	--named-addresses "razor_libs=$(LIBS_ADDRESS)"
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
 
 test:
 	aptos move test \
@@ -31,7 +31,7 @@ test:
 	--ignore-compile-warnings \
 	--move-2 \
 	--skip-attribute-checks \
-	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
 publish:
@@ -39,7 +39,7 @@ publish:
 	--move-2 \
 	--skip-fetch-latest-git-deps \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
-	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--address-name razor_libs
 
 upgrade:
@@ -47,7 +47,7 @@ upgrade:
 	--skip-fetch-latest-git-deps \
 	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
-	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--object-address $(LIBS_ADDRESS)
 
 docs:
@@ -55,4 +55,4 @@ docs:
 	--move-2 \
 	--skip-fetch-latest-git-deps \
 	--skip-attribute-checks \
-	--named-addresses "razor_libs=$(LIBS_ADDRESS)"
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
