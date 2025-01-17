@@ -1,5 +1,11 @@
 module razor_libs::utils {
+  use std::bcs;
   use std::vector;
+
+  use aptos_std::aptos_hash;
+
+  use razor_libs::i256::{I256};
+  use razor_libs::hex;
 
   const MAX_U64: u64 = 18446744073709551615;
 
@@ -71,5 +77,22 @@ module razor_libs::utils {
       i = i + 1;
     };
     sum
+  }
+
+  public fun encode_3(a: address, b: I256, c: I256): vector<u8> {
+    let bytes1 = bcs::to_bytes(&a);
+    let bytes2 = bcs::to_bytes(&b);
+    let bytes3 = bcs::to_bytes(&c);
+    vector::append(&mut bytes1, bytes2);
+    vector::append(&mut bytes1, bytes3);
+
+    return bytes1
+  }
+
+  public fun position_key(owner: address, tick_lower: I256, tick_upper: I256): vector<u8> {
+    let encoded = encode_3(owner, tick_lower, tick_upper);
+    let hash = aptos_hash::keccak256(encoded);
+    let encoded_hash = hex::encode(hash);
+    return encoded_hash
   }
 }
