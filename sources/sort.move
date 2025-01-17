@@ -38,7 +38,7 @@ module razor_libs::sort {
     (token0, token1)
   }
 
-  fun sort_three_tokens(
+  public fun sort_three_tokens(
     tokenA: Object<Metadata>,
     tokenB: Object<Metadata>,
     tokenC: Object<Metadata>,
