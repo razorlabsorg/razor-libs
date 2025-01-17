@@ -13,10 +13,23 @@ module razor_libs::sort {
   /// @param token0: First token metadata object
   /// @param token1: Second token metadata object
   /// @return bool: true if tokens are in correct order (token0 < token1)
-  public fun is_sorted(token0: Object<Metadata>, token1: Object<Metadata>): bool {
+  public fun is_sorted_two(token0: Object<Metadata>, token1: Object<Metadata>): bool {
     let token0_addr = object::object_address(&token0);
     let token1_addr = object::object_address(&token1);
     comparator::is_smaller_than(&comparator::compare(&token0_addr, &token1_addr))
+  }
+
+  public fun is_sorted_three(
+    token0: Object<Metadata>,
+    token1: Object<Metadata>,
+    token2: Object<Metadata>
+  ): bool {
+    let addr0 = object::object_address(&token0);
+    let addr1 = object::object_address(&token1);
+    let addr2 = object::object_address(&token2);
+
+    comparator::is_smaller_than(&comparator::compare(&addr0, &addr1)) &&
+    comparator::is_smaller_than(&comparator::compare(&addr1, &addr2))
   }
 
   // returns sorted token Metadata objects, used to handle return values from 
@@ -29,7 +42,7 @@ module razor_libs::sort {
     let token_b_addr = object::object_address(&token_b);
     assert!(token_a_addr != token_b_addr, ERROR_IDENTICAL_ADDRESSES);
     let (token0, token1);
-    if (is_sorted(token_a, token_b)) {
+    if (is_sorted_two(token_a, token_b)) {
       (token0, token1) = (token_a, token_b)
     } else {
       (token0, token1) = (token_b, token_a)
@@ -50,14 +63,14 @@ module razor_libs::sort {
     assert!(tokenA_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
     assert!(tokenB_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
     let (token0, token1, token2);
-    if (is_sorted(tokenA, tokenB)) {
-      if (is_sorted(tokenB, tokenC)) {
+    if (is_sorted_two(tokenA, tokenB)) {
+      if (is_sorted_two(tokenB, tokenC)) {
         (token0, token1, token2) = (tokenA, tokenB, tokenC)
       } else {
         (token0, token1, token2) = (tokenA, tokenC, tokenB)
       }
     } else {
-      if (is_sorted(tokenB, tokenC)) {
+      if (is_sorted_two(tokenB, tokenC)) {
         (token0, token1, token2) = (tokenB, tokenA, tokenC)
       } else {
         (token0, token1, token2) = (tokenB, tokenC, tokenA)
@@ -78,7 +91,7 @@ module razor_libs::sort {
     let tokenB_addr = object::object_address(&tokenB);
     assert!(tokenA_addr != tokenB_addr, ERROR_IDENTICAL_ADDRESSES);
 
-    if (!is_sorted(tokenA, tokenB)) {
+    if (!is_sorted_two(tokenA, tokenB)) {
       vector::reverse(&mut tokenVector);
     } ;
     tokenVector

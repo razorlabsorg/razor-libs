@@ -1,7 +1,5 @@
 module razor_libs::utils {
-  use aptos_framework::object::Object;
-  use aptos_framework::primary_fungible_store;
-  use aptos_framework::fungible_asset::FungibleStore;
+  use std::vector;
 
   const MAX_U64: u64 = 18446744073709551615;
 
@@ -15,15 +13,6 @@ module razor_libs::utils {
   const ERROR_INSUFFICIENT_INPUT_AMOUNT: u64 = 5;
   /// Insufficient Output Amount
   const ERROR_INSUFFICIENT_OUTPUT_AMOUNT: u64 = 6;
-
-  public fun ensure_account_token_store<T: key>(
-    account: address, 
-    pair: Object<T>
-  ): Object<FungibleStore> {
-    primary_fungible_store::ensure_primary_store_exists(account, pair);
-    let store = primary_fungible_store::primary_store(account, pair);
-    store
-  }
 
   // given some amount of an asset and pair reserves, 
   //returns an equivalent amount of the other asset
@@ -72,5 +61,15 @@ module razor_libs::utils {
     let denominator = ((reserve_out - amount_out) as u128) * ((9975) as u128);
     let amount_in = numerator / denominator + 1;
     (amount_in as u64)
+  }
+
+  public fun sum_vector(v: &vector<u256>): u256 {
+    let sum = 0u256;
+    let i = 0;
+    while (i < vector::length(v)) {
+      sum = sum + *vector::borrow(v, i);
+      i = i + 1;
+    };
+    sum
   }
 }
