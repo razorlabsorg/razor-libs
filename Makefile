@@ -9,7 +9,7 @@ ARTIFACTS_LEVEL ?= all
 DEFAULT_FUND_AMOUNT ?= 100000000
 DEFAULT_FUNDER_PRIVATE_KEY ?= 0x0
 DEV_ACCOUNT ?= 0x0133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a
-LIBS_ADDRESS ?= 0xeb2c1f2586f863cc1a1b71f6489a821473ef5e279bb2e00583ca97a299656fee
+LIBS_ADDRESS ?= 0xa08003c4b388cecfe32d8b8ccf6b0dfaf84b449860895d3bb0a0c841798f62d0
 
 # ============================= CLEAN ============================= #
 clean:

@@ -21,7 +21,7 @@ module razor_libs::sort {
 
   // returns sorted token Metadata objects, used to handle return values from 
   // pairs sorted in this order
-  public fun sort_tokens(
+  public fun sort_two_tokens(
     token_a: Object<Metadata>,
     token_b: Object<Metadata>,
   ): (Object<Metadata>, Object<Metadata>) {
@@ -38,7 +38,35 @@ module razor_libs::sort {
     (token0, token1)
   }
 
-  public fun sort_tokens_two(
+  fun sort_three_tokens(
+    tokenA: Object<Metadata>,
+    tokenB: Object<Metadata>,
+    tokenC: Object<Metadata>,
+  ): (Object<Metadata>, Object<Metadata>, Object<Metadata>) {
+    let tokenA_addr = object::object_address(&tokenA);
+    let tokenB_addr = object::object_address(&tokenB);
+    let tokenC_addr = object::object_address(&tokenC);
+    assert!(tokenA_addr != tokenB_addr, ERROR_IDENTICAL_ADDRESSES);
+    assert!(tokenA_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
+    assert!(tokenB_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
+    let (token0, token1, token2);
+    if (is_sorted(tokenA, tokenB)) {
+      if (is_sorted(tokenB, tokenC)) {
+        (token0, token1, token2) = (tokenA, tokenB, tokenC)
+      } else {
+        (token0, token1, token2) = (tokenA, tokenC, tokenB)
+      }
+    } else {
+      if (is_sorted(tokenB, tokenC)) {
+        (token0, token1, token2) = (tokenB, tokenA, tokenC)
+      } else {
+        (token0, token1, token2) = (tokenB, tokenC, tokenA)
+      }
+    };
+    (token0, token1, token2)
+  }
+
+  public fun sort_two_tokens_vector(
     tokenA: Object<Metadata>,
     tokenB: Object<Metadata>,
   ): vector<Object<Metadata>> {
@@ -56,7 +84,7 @@ module razor_libs::sort {
     tokenVector
   }
 
-  public fun sort_tokens_three(
+  public fun sort_three_tokens_vector(
     token0: Object<Metadata>,
     token1: Object<Metadata>,
     token2: Object<Metadata>,
