@@ -1,4 +1,4 @@
-module razor_libs::tickbitmap {
+module razor_libs::tick_bitmap {
 
   use aptos_std::simple_map::{Self, SimpleMap};
 

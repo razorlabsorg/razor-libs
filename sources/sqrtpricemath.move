@@ -1,3 +1,5 @@
+/// @title SqrtPriceMath
+/// @notice A library for performing arithmetic operations on sqrt prices
 module razor_libs::sqrtpricemath {
   use razor_libs::fixedpoint96;
   use razor_libs::fullmath;

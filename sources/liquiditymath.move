@@ -1,3 +1,5 @@
+/// @title LiquidityMath
+/// @notice A library for performing arithmetic operations on liquidity amounts
 module razor_libs::liquiditymath {
   use razor_libs::i256::{Self, I256};
 

@@ -1,3 +1,5 @@
+/// @title Hex
+/// @notice A library for encoding and decoding hex strings
 module razor_libs::hex {
     use std::vector;
 

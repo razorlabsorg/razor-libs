@@ -1,3 +1,5 @@
+/// @title Base64 
+/// @notice A library for encoding and decoding base64 strings
 module razor_libs::base64 {
   use std::vector;
 

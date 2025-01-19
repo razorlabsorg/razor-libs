@@ -1,3 +1,5 @@
+/// @title TokenUtils
+/// @notice A library for creating and managing token stores
 module razor_libs::token_utils {
   use aptos_framework::object::{Self, Object};
   use aptos_framework::fungible_asset::{Self, FungibleStore, Metadata};

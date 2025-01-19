@@ -1,3 +1,5 @@
+/// @title Validation
+/// @notice A library for validating transactions
 module razor_libs::validation {
   use aptos_framework::timestamp;
 

@@ -1,3 +1,5 @@
+/// @title SwapMath
+/// @notice A library for performing swap calculations
 module razor_libs::swapmath {
   use razor_libs::i256::{Self, I256};
   use razor_libs::fullmath;

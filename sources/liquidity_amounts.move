@@ -1,3 +1,5 @@
+/// @title LiquidityAmounts
+/// @notice A library for calculating liquidity amounts
 module razor_libs::liquidity_amounts {
   use razor_libs::fullmath;
   use razor_libs::fixedpoint96 as fp96;

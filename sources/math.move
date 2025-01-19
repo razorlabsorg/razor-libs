@@ -1,6 +1,5 @@
-/*
- * A library for performing various math operations
-*/
+/// @title Math
+/// @notice A library for performing mathematical operations
 module razor_libs::math {
   /// Largest possible u128 number
   const MAX_U128: u128 = 340282366920938463463374607431768211455;

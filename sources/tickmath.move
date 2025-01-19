@@ -1,3 +1,5 @@
+/// @title TickMath
+/// @notice A library for performing arithmetic operations on tick values
 module razor_libs::tickmath {
 
   use razor_libs::i256::{Self, I256};

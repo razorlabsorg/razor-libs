@@ -1,3 +1,5 @@
+/// @title I256
+/// @notice A library for performing arithmetic operations on 256-bit signed integers
 module razor_libs::i256 {
     /// @dev Maximum I256 value as a u256.
     const MAX_I256_AS_U256: u256 = 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;

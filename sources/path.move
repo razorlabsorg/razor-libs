@@ -1,3 +1,5 @@
+/// @title Path
+/// @notice A library for decoding and encoding paths
 module razor_libs::path {
   use std::bcs;
   use std::vector;

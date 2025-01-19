@@ -1,3 +1,5 @@
+/// @title Sort
+/// @notice A library for sorting token metadata objects
 module razor_libs::sort {
   use std::vector;
 

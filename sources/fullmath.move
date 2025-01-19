@@ -1,3 +1,5 @@
+/// @title FullMath
+/// @notice A library for performing multiplication and division operations with arbitrary precision
 module razor_libs::fullmath {
   use aptos_std::math128;
 

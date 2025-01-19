@@ -1,3 +1,5 @@
+/// @title HexStrings
+/// @notice A library for encoding and decoding hex strings
 module razor_libs::hexstrings {
   use std::vector;
   use std::string::{Self, String};

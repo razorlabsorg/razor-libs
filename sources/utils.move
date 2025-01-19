@@ -1,3 +1,5 @@
+/// @title Utils
+/// @notice A library for performing various utility operations
 module razor_libs::utils {
   use std::bcs;
   use std::vector;
