@@ -1,6 +1,6 @@
 /// @title LiquidityMath
 /// @notice A library for performing arithmetic operations on liquidity amounts
-module razor_libs::liquiditymath {
+module razor_libs::liquidity_math {
   use razor_libs::i256::{Self, I256};
 
   const ERR_LS: u64 = 100;

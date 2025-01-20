@@ -3,10 +3,13 @@
 
 # Module `0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a::sort`
 
+@title Sort
+@notice A library for sorting token metadata objects
 
 
 -  [Constants](#@Constants_0)
--  [Function `is_sorted`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted)
+-  [Function `is_sorted_two`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_two)
+-  [Function `is_sorted_three`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_three)
 -  [Function `sort_two_tokens`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_sort_two_tokens)
 -  [Function `sort_three_tokens`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_sort_three_tokens)
 -  [Function `sort_two_tokens_vector`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_sort_two_tokens_vector)
@@ -37,9 +40,9 @@ Identical Addresses
 
 
 
-<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted"></a>
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_two"></a>
 
-## Function `is_sorted`
+## Function `is_sorted_two`
 
 Determines if two token metadata objects are in canonical order based on their addresses
 @param token0: First token metadata object
@@ -47,7 +50,18 @@ Determines if two token metadata objects are in canonical order based on their a
 @return bool: true if tokens are in correct order (token0 < token1)
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="sort.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted">is_sorted</a>(token0: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;, token1: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;): bool
+<pre><code><b>public</b> <b>fun</b> <a href="sort.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_two">is_sorted_two</a>(token0: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;, token1: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;): bool
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_three"></a>
+
+## Function `is_sorted_three`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="sort.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_sort_is_sorted_three">is_sorted_three</a>(token0: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;, token1: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;, token2: <a href="_Object">object::Object</a>&lt;<a href="_Metadata">fungible_asset::Metadata</a>&gt;): bool
 </code></pre>
 
 

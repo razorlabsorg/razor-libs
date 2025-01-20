@@ -3,6 +3,8 @@
 
 # Module `0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a::math`
 
+@title Math
+@notice A library for performing mathematical operations
 
 
 -  [Constants](#@Constants_0)

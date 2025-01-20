@@ -3,7 +3,7 @@
 module razor_libs::swapmath {
   use razor_libs::i256::{Self, I256};
   use razor_libs::fullmath;
-  use razor_libs::sqrtpricemath;
+  use razor_libs::sqrt_price_math;
 
   const EQUAL: u8 = 0;
 
@@ -28,15 +28,15 @@ module razor_libs::swapmath {
     if (exact_in) {
       let amount_remaining_less_fee = fullmath::mul_div(i256::as_u256(amount_remaining), (1000000 - (fee_pips as u256)), 1000000);
       if (zero_for_one) {
-        amount_in = sqrtpricemath::get_amount0_delta(sqrt_ratio_target_x96, sqrt_ratio_current_x96, liquidity, true)
+        amount_in = sqrt_price_math::get_amount0_delta(sqrt_ratio_target_x96, sqrt_ratio_current_x96, liquidity, true)
       } else {
-        amount_in = sqrtpricemath::get_amount1_delta(sqrt_ratio_current_x96, sqrt_ratio_target_x96, liquidity, true)
+        amount_in = sqrt_price_math::get_amount1_delta(sqrt_ratio_current_x96, sqrt_ratio_target_x96, liquidity, true)
       };
 
       if (amount_remaining_less_fee >= amount_in) {
         sqrt_ratio_next_x96 = sqrt_ratio_target_x96
       } else {
-        sqrt_ratio_next_x96 = sqrtpricemath::get_next_sqrt_price_from_output(
+        sqrt_ratio_next_x96 = sqrt_price_math::get_next_sqrt_price_from_output(
           sqrt_ratio_current_x96,
           liquidity,
           i256::as_u256(i256::abs(amount_remaining)),
@@ -45,9 +45,9 @@ module razor_libs::swapmath {
       };
     } else {
       if (zero_for_one) {
-        amount_out = sqrtpricemath::get_amount1_delta(sqrt_ratio_target_x96, sqrt_ratio_current_x96, liquidity, false)
+        amount_out = sqrt_price_math::get_amount1_delta(sqrt_ratio_target_x96, sqrt_ratio_current_x96, liquidity, false)
       } else {
-        amount_out = sqrtpricemath::get_amount0_delta(sqrt_ratio_current_x96, sqrt_ratio_target_x96, liquidity, false)
+        amount_out = sqrt_price_math::get_amount0_delta(sqrt_ratio_current_x96, sqrt_ratio_target_x96, liquidity, false)
       };
 
       if (
@@ -55,7 +55,7 @@ module razor_libs::swapmath {
         i256::compare(i256::abs(amount_remaining), i256::from(amount_out)) == EQUAL) {
           sqrt_ratio_next_x96 = sqrt_ratio_target_x96
       } else {
-        sqrt_ratio_next_x96 = sqrtpricemath::get_next_sqrt_price_from_input(
+        sqrt_ratio_next_x96 = sqrt_price_math::get_next_sqrt_price_from_input(
           sqrt_ratio_current_x96,
           liquidity,
           i256::as_u256(i256::abs(amount_remaining)),
@@ -70,23 +70,23 @@ module razor_libs::swapmath {
       amount_in = if (max && exact_in) {
         amount_in
       } else {
-        sqrtpricemath::get_amount0_delta(sqrt_ratio_next_x96, sqrt_ratio_current_x96, liquidity, true)
+        sqrt_price_math::get_amount0_delta(sqrt_ratio_next_x96, sqrt_ratio_current_x96, liquidity, true)
       };
       amount_out = if (max && !exact_in) {
         amount_out
       } else {
-        sqrtpricemath::get_amount1_delta(sqrt_ratio_next_x96, sqrt_ratio_current_x96, liquidity, false)
+        sqrt_price_math::get_amount1_delta(sqrt_ratio_next_x96, sqrt_ratio_current_x96, liquidity, false)
       };
     } else {
       amount_in = if (max && exact_in) {
         amount_in
       } else {
-        sqrtpricemath::get_amount1_delta(sqrt_ratio_current_x96, sqrt_ratio_next_x96, liquidity, true)
+        sqrt_price_math::get_amount1_delta(sqrt_ratio_current_x96, sqrt_ratio_next_x96, liquidity, true)
       };
       amount_out = if (max && !exact_in) {
         amount_out
       } else {
-        sqrtpricemath::get_amount0_delta(sqrt_ratio_current_x96, sqrt_ratio_next_x96, liquidity, false)
+        sqrt_price_math::get_amount0_delta(sqrt_ratio_current_x96, sqrt_ratio_next_x96, liquidity, false)
       };
     };
 

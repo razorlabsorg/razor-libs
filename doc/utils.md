@@ -3,18 +3,24 @@
 
 # Module `0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a::utils`
 
+@title Utils
+@notice A library for performing various utility operations
 
 
 -  [Constants](#@Constants_0)
--  [Function `ensure_account_token_store`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_ensure_account_token_store)
 -  [Function `quote`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_quote)
 -  [Function `get_amount_out`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_get_amount_out)
 -  [Function `get_amount_in`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_get_amount_in)
+-  [Function `sum_vector`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_sum_vector)
+-  [Function `encode_3`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_encode_3)
+-  [Function `position_key`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_position_key)
 
 
-<pre><code><b>use</b> <a href="">0x1::fungible_asset</a>;
-<b>use</b> <a href="">0x1::object</a>;
-<b>use</b> <a href="">0x1::primary_fungible_store</a>;
+<pre><code><b>use</b> <a href="hex.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_hex">0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a::hex</a>;
+<b>use</b> <a href="i256.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_i256">0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a::i256</a>;
+<b>use</b> <a href="">0x1::aptos_hash</a>;
+<b>use</b> <a href="">0x1::bcs</a>;
+<b>use</b> <a href="">0x1::vector</a>;
 </code></pre>
 
 
@@ -83,17 +89,6 @@ Overflow
 
 
 
-<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_ensure_account_token_store"></a>
-
-## Function `ensure_account_token_store`
-
-
-
-<pre><code><b>public</b> <b>fun</b> <a href="utils.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_ensure_account_token_store">ensure_account_token_store</a>&lt;T: key&gt;(<a href="">account</a>: <b>address</b>, pair: <a href="_Object">object::Object</a>&lt;T&gt;): <a href="_Object">object::Object</a>&lt;<a href="_FungibleStore">fungible_asset::FungibleStore</a>&gt;
-</code></pre>
-
-
-
 <a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_quote"></a>
 
 ## Function `quote`
@@ -124,4 +119,37 @@ Overflow
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="utils.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_get_amount_in">get_amount_in</a>(amount_out: u64, reserve_in: u64, reserve_out: u64): u64
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_sum_vector"></a>
+
+## Function `sum_vector`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="utils.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_sum_vector">sum_vector</a>(v: &<a href="">vector</a>&lt;u256&gt;): u256
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_encode_3"></a>
+
+## Function `encode_3`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="utils.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_encode_3">encode_3</a>(a: <b>address</b>, b: <a href="i256.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_i256_I256">i256::I256</a>, c: <a href="i256.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_i256_I256">i256::I256</a>): <a href="">vector</a>&lt;u8&gt;
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_position_key"></a>
+
+## Function `position_key`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="utils.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_utils_position_key">position_key</a>(owner: <b>address</b>, tick_lower: <a href="i256.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_i256_I256">i256::I256</a>, tick_upper: <a href="i256.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_i256_I256">i256::I256</a>): <a href="">vector</a>&lt;u8&gt;
 </code></pre>

@@ -1,7 +1,6 @@
 /// @title BitMath
 /// @dev This library provides functionality for computing bit properties of an unsigned integer
 module razor_libs::bitmath {
-
   const MAX_U128: u256 = 340282366920938463463374607431768211455;
   const MAX_U64: u256 =  18446744073709551615;
   const MAX_U32: u256 = 4294967295;
