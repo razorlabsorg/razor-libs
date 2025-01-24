@@ -17,19 +17,31 @@ module razor_libs::i128 {
     const GREATER_THAN: u8 = 2;
 
     /// @dev When trying to convert from a u128 > MAX_I128_AS_U128 to an I128.
-    const ECONVERSION_FROM_U128_OVERFLOW: u64 = 0;
+    const ERROR_CONVERSION_FROM_U128_OVERFLOW: u64 = 0;
 
     /// @dev When trying to convert from an negative I128 to a u128.
-    const ECONVERSION_TO_U128_UNDERFLOW: u64 = 1;
+    const ERROR_CONVERSION_TO_U128_UNDERFLOW: u64 = 1;
 
     /// @notice Struct representing a signed 128-bit integer.
     struct I128 has copy, drop, store {
         bits: u128
     }
 
+    public fun lt(): u8 {
+        LESS_THAN
+    }
+
+    public fun gt(): u8 {
+        GREATER_THAN
+    }
+
+    public fun eq(): u8 {
+        EQUAL
+    }
+
     /// @notice Casts a `u128` to an `I128`.
     public fun from(x: u128): I128 {
-        assert!(x <= MAX_I128_AS_U128, error::invalid_argument(ECONVERSION_FROM_U128_OVERFLOW));
+        assert!(x <= MAX_I128_AS_U128, error::invalid_argument(ERROR_CONVERSION_FROM_U128_OVERFLOW));
         I128 { bits: x }
     }
 
@@ -40,7 +52,7 @@ module razor_libs::i128 {
 
     /// @notice Casts an `I128` to a `u128`.
     public fun as_u128(x: I128): u128 {
-        assert!(x.bits < U128_WITH_FIRST_BIT_SET, error::invalid_argument(ECONVERSION_TO_U128_UNDERFLOW));
+        assert!(x.bits < U128_WITH_FIRST_BIT_SET, error::invalid_argument(ERROR_CONVERSION_TO_U128_UNDERFLOW));
         x.bits
     }
 
@@ -190,61 +202,5 @@ module razor_libs::i128 {
                 return I128 { bits: (a.bits - (1 << 127)) / (b.bits - (1 << 127)) } // Return positive
             }
         }
-    }
-
-    #[test]
-    fun test_compare() {
-        assert!(compare(from(123), from(123)) == EQUAL, 0);
-        assert!(compare(neg_from(123), neg_from(123)) == EQUAL, 0);
-        assert!(compare(from(234), from(123)) == GREATER_THAN, 0);
-        assert!(compare(from(123), from(234)) == LESS_THAN, 0);
-        assert!(compare(neg_from(234), neg_from(123)) == LESS_THAN, 0);
-        assert!(compare(neg_from(123), neg_from(234)) == GREATER_THAN, 0);
-        assert!(compare(from(123), neg_from(234)) == GREATER_THAN, 0);
-        assert!(compare(neg_from(123), from(234)) == LESS_THAN, 0);
-        assert!(compare(from(234), neg_from(123)) == GREATER_THAN, 0);
-        assert!(compare(neg_from(234), from(123)) == LESS_THAN, 0);
-    }
-
-    #[test]
-    fun test_add() {
-        assert!(add(from(123), from(234)) == from(357), 0);
-        assert!(add(from(123), neg_from(234)) == neg_from(111), 0);
-        assert!(add(from(234), neg_from(123)) == from(111), 0);
-        assert!(add(neg_from(123), from(234)) == from(111), 0);
-        assert!(add(neg_from(123), neg_from(234)) == neg_from(357), 0);
-        assert!(add(neg_from(234), neg_from(123)) == neg_from(357), 0);
-
-        assert!(add(from(123), neg_from(123)) == zero(), 0);
-        assert!(add(neg_from(123), from(123)) == zero(), 0);
-    }
-
-    #[test]
-    fun test_sub() {
-        assert!(sub(from(123), from(234)) == neg_from(111), 0);
-        assert!(sub(from(234), from(123)) == from(111), 0);
-        assert!(sub(from(123), neg_from(234)) == from(357), 0);
-        assert!(sub(neg_from(123), from(234)) == neg_from(357), 0);
-        assert!(sub(neg_from(123), neg_from(234)) == from(111), 0);
-        assert!(sub(neg_from(234), neg_from(123)) == neg_from(111), 0);
-
-        assert!(sub(from(123), from(123)) == zero(), 0);
-        assert!(sub(neg_from(123), neg_from(123)) == zero(), 0);
-    }
-
-    #[test]
-    fun test_mul() {
-        assert!(mul(from(123), from(234)) == from(28782), 0);
-        assert!(mul(from(123), neg_from(234)) == neg_from(28782), 0);
-        assert!(mul(neg_from(123), from(234)) == neg_from(28782), 0);
-        assert!(mul(neg_from(123), neg_from(234)) == from(28782), 0);
-    }
-
-    #[test]
-    fun test_div() {
-        assert!(div(from(28781), from(123)) == from(233), 0);
-        assert!(div(from(28781), neg_from(123)) == neg_from(233), 0);
-        assert!(div(neg_from(28781), from(123)) == neg_from(233), 0);
-        assert!(div(neg_from(28781), neg_from(123)) == from(233), 0);
     }
 }

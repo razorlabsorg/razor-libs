@@ -3,6 +3,7 @@
     "bitmath",
     "clamm",
     "ECODE",
+    "ECONVERSION",
     "fullmath",
     "hexstrings",
     "liquiditymath",

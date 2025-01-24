@@ -28,16 +28,4 @@ module razor_libs::bitwise_not {
     public fun not_u256(x: u256): u256 {
         x ^ 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
-
-    // Test function
-    #[test]
-    public fun test_bitwise_not() {
-      let input_u64: u64 = 0xAAAAAAAAAAAAAAAA;
-      let result_u64 = not_u64(input_u64);
-      assert!(result_u64 == 0x5555555555555555, 1);
-
-      let input_u64_2: u64 = 0x1234567890ABCDEF;
-      let result_u64_2 = not_u64(input_u64_2);
-      assert!(result_u64_2 == 0xEDCBA9876F543210, 2);
-    }
 }
