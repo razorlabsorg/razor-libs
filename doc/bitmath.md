@@ -8,6 +8,8 @@
 
 
 -  [Constants](#@Constants_0)
+-  [Function `closest_bit_right`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_right)
+-  [Function `closest_bit_left`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_left)
 -  [Function `most_significant_bit`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_most_significant_bit)
 -  [Function `least_significant_bit`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_least_significant_bit)
 
@@ -66,11 +68,42 @@
 
 
 
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_MAX_U256"></a>
+
+
+
+<pre><code><b>const</b> <a href="bitmath.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_MAX_U256">MAX_U256</a>: u256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
+</code></pre>
+
+
+
 <a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_ERROR_INVALID_VALUE"></a>
 
 
 
 <pre><code><b>const</b> <a href="bitmath.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_ERROR_INVALID_VALUE">ERROR_INVALID_VALUE</a>: u64 = 0;
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_right"></a>
+
+## Function `closest_bit_right`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="bitmath.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_right">closest_bit_right</a>(x: u256, <a href="bit.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bit">bit</a>: u8): u256
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_left"></a>
+
+## Function `closest_bit_left`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="bitmath.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bitmath_closest_bit_left">closest_bit_left</a>(x: u256, <a href="bit.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_bit">bit</a>: u8): u256
 </code></pre>
 
 

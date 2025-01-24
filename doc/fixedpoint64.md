@@ -18,6 +18,10 @@
 -  [Function `fraction`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_fraction)
 -  [Function `compare`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_compare)
 -  [Function `is_zero`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_is_zero)
+-  [Function `lt`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lt)
+-  [Function `lte`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lte)
+-  [Function `gt`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gt)
+-  [Function `gte`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gte)
 
 
 <pre><code></code></pre>
@@ -182,4 +186,48 @@ Check if <code><a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_is_zero">is_zero</a>(uq: &<a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>): bool
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lt"></a>
+
+## Function `lt`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lt">lt</a>(left: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>, right: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>): bool
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lte"></a>
+
+## Function `lte`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_lte">lte</a>(left: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>, right: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>): bool
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gt"></a>
+
+## Function `gt`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gt">gt</a>(left: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>, right: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>): bool
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gte"></a>
+
+## Function `gte`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_gte">gte</a>(left: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>, right: <a href="fixedpoint64.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_fixedpoint64_UQ64x64">fixedpoint64::UQ64x64</a>): bool
 </code></pre>

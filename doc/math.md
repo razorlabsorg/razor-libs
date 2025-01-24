@@ -8,8 +8,10 @@
 
 
 -  [Constants](#@Constants_0)
+-  [Function `max_u128`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_max_u128)
 -  [Function `sqrt`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt)
 -  [Function `sqrt_128`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt_128)
+-  [Function `sqrt_256`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt_256)
 -  [Function `min`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_min)
 -  [Function `overflow_add`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_overflow_add)
 -  [Function `is_overflow_mul`](#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_is_overflow_mul)
@@ -34,6 +36,17 @@ Largest possible u128 number
 
 
 
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_max_u128"></a>
+
+## Function `max_u128`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="math.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_max_u128">max_u128</a>(): u128
+</code></pre>
+
+
+
 <a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt"></a>
 
 ## Function `sqrt`
@@ -53,6 +66,17 @@ babylonian method (https://en.wikipedia.org/wiki/Methods_of_computing_square_roo
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="math.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt_128">sqrt_128</a>(y: u128): u64
+</code></pre>
+
+
+
+<a id="0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt_256"></a>
+
+## Function `sqrt_256`
+
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="math.md#0x133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a_math_sqrt_256">sqrt_256</a>(x: u256): u256
 </code></pre>
 
 
