@@ -107,4 +107,20 @@ module razor_libs::fixedpoint64 {
         ensures uq.v == 0 ==> result == true;
         ensures uq.v > 0 ==> result == false;
     }
+
+    public fun lt(left: UQ64x64, right: UQ64x64): bool {
+        left.v < right.v
+    }
+
+    public fun lte(left: UQ64x64, right: UQ64x64): bool {
+        left.v <= right.v
+    }
+
+    public fun gt(left: UQ64x64, right: UQ64x64): bool {
+        left.v > right.v
+    }
+
+    public fun gte(left: UQ64x64, right: UQ64x64): bool {
+        left.v >= right.v
+    }
 }

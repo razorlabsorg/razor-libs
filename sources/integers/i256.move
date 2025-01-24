@@ -29,6 +29,18 @@ module razor_libs::i256 {
         bits: u256
     }
 
+    public fun lt(): u8 {
+        LESS_THAN
+    }
+
+    public fun gt(): u8 {
+        GREATER_THAN
+    }
+
+    public fun eq(): u8 {
+        EQUAL
+    }
+
     public fun from_raw(x: u256): I256 {
       I256 { bits: x }
     }
@@ -120,9 +132,9 @@ module razor_libs::i256 {
 
     public fun add(a: I256, b: I256): I256 {
         if (is_positive(a)) {
-            // A is posiyive
+            // A is positive
             if (is_positive(b)) {
-                // A and B are posistive;
+                // A and B are positive;
                 from(a.bits + b.bits)
             } else {
                 // A is positive but B is negative
@@ -254,61 +266,5 @@ module razor_libs::i256 {
       I256 {
         bits: a.bits & b.bits
       } 
-    }
-
-    #[test]
-    fun test_compare() {
-        assert!(compare(from(123), from(123)) == EQUAL, 0);
-        assert!(compare(neg_from(123), neg_from(123)) == EQUAL, 0);
-        assert!(compare(from(234), from(123)) == GREATER_THAN, 0);
-        assert!(compare(from(123), from(234)) == LESS_THAN, 0);
-        assert!(compare(neg_from(234), neg_from(123)) == LESS_THAN, 0);
-        assert!(compare(neg_from(123), neg_from(234)) == GREATER_THAN, 0);
-        assert!(compare(from(123), neg_from(234)) == GREATER_THAN, 0);
-        assert!(compare(neg_from(123), from(234)) == LESS_THAN, 0);
-        assert!(compare(from(234), neg_from(123)) == GREATER_THAN, 0);
-        assert!(compare(neg_from(234), from(123)) == LESS_THAN, 0);
-    }
-
-    #[test]
-    fun test_add() {
-        assert!(add(from(123), from(234)) == from(357), 0);
-        assert!(add(from(123), neg_from(234)) == neg_from(111), 0);
-        assert!(add(from(234), neg_from(123)) == from(111), 0);
-        assert!(add(neg_from(123), from(234)) == from(111), 0);
-        assert!(add(neg_from(123), neg_from(234)) == neg_from(357), 0);
-        assert!(add(neg_from(234), neg_from(123)) == neg_from(357), 0);
-
-        assert!(add(from(123), neg_from(123)) == zero(), 0);
-        assert!(add(neg_from(123), from(123)) == zero(), 0);
-    }
-
-    #[test]
-    fun test_sub() {
-        assert!(sub(from(123), from(234)) == neg_from(111), 0);
-        assert!(sub(from(234), from(123)) == from(111), 0);
-        assert!(sub(from(123), neg_from(234)) == from(357), 0);
-        assert!(sub(neg_from(123), from(234)) == neg_from(357), 0);
-        assert!(sub(neg_from(123), neg_from(234)) == from(111), 0);
-        assert!(sub(neg_from(234), neg_from(123)) == neg_from(111), 0);
-
-        assert!(sub(from(123), from(123)) == zero(), 0);
-        assert!(sub(neg_from(123), neg_from(123)) == zero(), 0);
-    }
-
-    #[test]
-    fun test_mul() {
-        assert!(mul(from(123), from(234)) == from(28782), 0);
-        assert!(mul(from(123), neg_from(234)) == neg_from(28782), 0);
-        assert!(mul(neg_from(123), from(234)) == neg_from(28782), 0);
-        assert!(mul(neg_from(123), neg_from(234)) == from(28782), 0);
-    }
-
-    #[test]
-    fun test_div() {
-        assert!(div(from(28781), from(123)) == from(233), 0);
-        assert!(div(from(28781), neg_from(123)) == neg_from(233), 0);
-        assert!(div(neg_from(28781), from(123)) == neg_from(233), 0);
-        assert!(div(neg_from(28781), neg_from(123)) == from(233), 0);
     }
 }
