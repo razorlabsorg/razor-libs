@@ -4,6 +4,10 @@ module razor_libs::math {
   /// Largest possible u128 number
   const MAX_U128: u128 = 340282366920938463463374607431768211455;
 
+  public fun max_u128(): u128 {
+    MAX_U128
+  }
+
   // sqrt function
   public fun sqrt(x: u64, y: u64): u64 {
     sqrt_128((x as u128) * (y as u128))
@@ -28,7 +32,7 @@ module razor_libs::math {
     }
   }
 
-  fun sqrt_256(x: u256): u256 {
+  public fun sqrt_256(x: u256): u256 {
     if (x == 0) return 0;
 
     let xx = x;
