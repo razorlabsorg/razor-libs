@@ -12,49 +12,69 @@ module razor_libs::hexstrings {
     let buffer = vector::empty<u8>();
     vector::append(&mut buffer, b"0");
     vector::append(&mut buffer, b"x");
-    let fixed_length = 2 * length + 2;
-    let current_length = vector::length(&buffer);
-    while (current_length < (fixed_length as u64)) {
-      vector::append(&mut buffer, b"0");
-      current_length = current_length + 1;
+    
+    // Check if number fits in specified length first
+    let mut_value = value;
+    let digit_count = 0;
+    let temp_value = value;
+    while (temp_value > 0) {
+        temp_value = temp_value >> 4;
+        digit_count = digit_count + 1;
+    };
+    assert!(digit_count <= 2 * length, ERR_INSUFFICIENT_LENGTH);
+
+    // Convert value to hex, starting from least significant digit
+    let digits = vector::empty<u8>();
+    while (mut_value > 0) {
+        let digit = mut_value & 0xf;
+        vector::push_back(&mut digits, *vector::borrow(&ALPHABET, (digit as u64)));
+        mut_value = mut_value >> 4;
     };
 
-    let i = 2 * length + 1;
-    while (i > 1) {
-      let intermediate = value & 0xf;
-      let at_intermediate = *vector::borrow(&ALPHABET, (intermediate as u64));
-      vector::insert(&mut buffer, (i as u64), at_intermediate);
-      value = value >> 4;
-      i = i - 1;
+    // Pad with zeros if needed
+    while (vector::length(&digits) < (2 * length as u64)) {
+      vector::append(&mut digits, b"0");
     };
 
-    vector::trim(&mut buffer, (fixed_length as u64));
+    // Reverse digits and append to buffer
+    while (!vector::is_empty(&digits)) {
+        vector::push_back(&mut buffer, vector::pop_back(&mut digits));
+    };
 
-    assert!(value == 0, ERR_INSUFFICIENT_LENGTH);
-    return string::utf8(buffer)
+    string::utf8(buffer)
   }
 
   public fun to_hex_string_no_prefix(value: u256, length: u256): String {
     let buffer = vector::empty<u8>();
-    let fixed_length = 2 * length;
-    let current_length = vector::length(&buffer);
-
-    while (current_length < (fixed_length as u64)) {
-      vector::append(&mut buffer, b"0");
-      current_length = current_length + 1;
-    };
-
-    let i = vector::length(&buffer);
-    while (i > 0) {
-      let intermediate = value & 0xf;
-      let at_intermediate = *vector::borrow(&ALPHABET, (intermediate as u64));
-      vector::insert(&mut buffer, ((i - 1) as u64), at_intermediate);
-      value = value >> 4;
-      i = i - 1;
-    };
-
-    vector::trim(&mut buffer, (fixed_length as u64));
     
-    return string::utf8(buffer)
+    // Check if number fits in specified length first
+    let mut_value = value;
+    let digit_count = 0;
+    let temp_value = value;
+    while (temp_value > 0) {
+        temp_value = temp_value >> 4;
+        digit_count = digit_count + 1;
+    };
+    assert!(digit_count <= 2 * length, ERR_INSUFFICIENT_LENGTH);
+
+    // Convert value to hex, starting from least significant digit
+    let digits = vector::empty<u8>();
+    while (mut_value > 0) {
+        let digit = mut_value & 0xf;
+        vector::push_back(&mut digits, *vector::borrow(&ALPHABET, (digit as u64)));
+        mut_value = mut_value >> 4;
+    };
+
+    // Pad with zeros if needed
+    while (vector::length(&digits) < (2 * length as u64)) {
+        vector::append(&mut digits, b"0");
+    };
+
+    // Reverse digits and append to buffer
+    while (!vector::is_empty(&digits)) {
+        vector::push_back(&mut buffer, vector::pop_back(&mut digits));
+    };
+
+    string::utf8(buffer)
   }
 }

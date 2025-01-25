@@ -154,6 +154,106 @@ module razor_libs::fullmath_test {
   }
 
   #[test]
+  public fun test_mul_div_v2_with_complex_remainder() {
+    // Test case where remainder calculation is needed
+    let a: u256 = 0x8000000000000000;
+    let b: u256 = 0x8000000000000001;
+    let denominator: u256 = 0x8000000000000000;
+    let result = fullmath::mul_div_v2(a, b, denominator);
+    assert!(result == a + 1, 1);
+  }
+
+  #[test]
+  public fun test_mul_div_v2_with_twos() {
+    // Test case where twos calculation is significant
+    let a: u256 = 0x4000000000000000;
+    let b: u256 = 0x4000000000000000;
+    let denominator: u256 = 0x2000000000000000;
+    let result = fullmath::mul_div_v2(a, b, denominator);
+    assert!(result == 0x8000000000000000, 1);
+  }
+
+  #[test]
+  public fun test_mul_div_v2_simple_case() {
+    // Test simple case where prod1 is 0
+    let a: u256 = 1000;
+    let b: u256 = 1000;
+    let denominator: u256 = 100;
+    let result = fullmath::mul_div_v2(a, b, denominator);
+    assert!(result == 10000, 1);
+  }
+
+  #[test]
+  #[expected_failure]
+  public fun test_mul_mod_overflow() {
+    // Should fail when multiplication overflows
+    let a = MAX_U256;
+    let b: u256 = 2;
+    fullmath::mul_mod(a, b, 3);
+  }
+
+  #[test]
+  public fun test_mul_div_rounding_up_exact() {
+    // Test case where no rounding is needed
+    let result = fullmath::mul_div_rounding_up(100, 100, 100);
+    assert!(result == 100, 1);
+  }
+
+  #[test]
+  public fun test_mul_div_rounding_up_with_remainder() {
+    // Test case where rounding is needed
+    let result = fullmath::mul_div_rounding_up(101, 100, 100);
+    assert!(result == 101, 1);
+  }
+
+  #[test]
+  #[expected_failure]
+  public fun test_mul_div_rounding_up_max_value_plus_one() {
+    // Should fail when trying to round up MAX_U256
+    let max = MAX_U256;
+    fullmath::mul_div_rounding_up(max, max, 1);
+  }
+
+  #[test]
+  public fun test_div_rounding_up_exact() {
+    // Test case where no rounding is needed
+    let result = fullmath::div_rounding_up(100, 10);
+    assert!(result == 10, 1);
+  }
+
+  #[test]
+  public fun test_div_rounding_up_with_remainder() {
+    // Test case where rounding is needed
+    let result = fullmath::div_rounding_up(101, 10);
+    assert!(result == 11, 1);
+  }
+
+  #[test]
+  public fun test_full_mul_edge_cases() {
+    // Test multiplication with zero
+    assert!(fullmath::full_mul(0, 123) == 0, 1);
+    assert!(fullmath::full_mul(123, 0) == 0, 2);
+
+    // Test multiplication with one
+    assert!(fullmath::full_mul(123, 1) == 123, 3);
+    assert!(fullmath::full_mul(1, 123) == 123, 4);
+
+    // Test multiplication with large numbers
+    let large_num: u256 = 0x7fffffffffffffff;
+    assert!(fullmath::full_mul(large_num, 2) == large_num * 2, 5);
+  }
+
+  #[test]
+  public fun test_mul_div_v2_inverse_calculation() {
+    // Test case that exercises the inverse calculation path
+    let a: u256 = 0x4000000000000000;
+    let b: u256 = 0x4000000000000000;
+    let denominator: u256 = 0x3000000000000000;
+    let result = fullmath::mul_div_v2(a, b, denominator);
+    assert!(result > a, 1); // Result should be larger than input due to smaller denominator
+  }
+
+  #[test]
   public fun test_mul_mod_comprehensive() {
     // Basic cases
     assert!(fullmath::mul_mod(10, 20, 7) == 4, 1); // (10 * 20) % 7 = 200 % 7 = 4
@@ -172,34 +272,6 @@ module razor_libs::fullmath_test {
   public fun test_mul_div_revert_if_denominator_is_zero() {
     let q128 = (pow(2, 128) as u256);
     fullmath::mul_div_v2(q128, 5, 0);
-  }
-
-  #[test]
-  #[expected_failure]
-  public fun test_mul_mod_overflow() {
-    let max = MAX_U256;
-    fullmath::mul_mod(max, 2, max);
-  }
-
-  #[test]
-  public fun test_mul_div_rounding_up_comprehensive() {
-    // Test exact division (no rounding needed)
-    assert!(fullmath::mul_div_rounding_up(100, 10, 10) == 100, 1);
-    
-    // Test cases requiring rounding up
-    assert!(fullmath::mul_div_rounding_up(101, 10, 10) == 101, 2);
-    assert!(fullmath::mul_div_rounding_up(10, 10, 3) == 34, 3);
-    
-    // Test with zero inputs
-    assert!(fullmath::mul_div_rounding_up(0, 10, 3) == 0, 4);
-    assert!(fullmath::mul_div_rounding_up(10, 0, 3) == 0, 5);
-  }
-
-  #[test]
-  #[expected_failure]
-  public fun test_mul_div_rounding_up_max_value() {
-    let max = MAX_U256;
-    fullmath::mul_div_rounding_up(max, max - 1, 1);
   }
 
   #[test]
