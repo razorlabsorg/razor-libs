@@ -28,7 +28,7 @@ module razor_libs::hexstrings_test {
   }
 
   #[test]
-  #[expected_failure(abort_code = 1000)]
+  #[expected_failure(abort_code = 1000, location = razor_libs::hexstrings)]
   fun test_to_hex_string_insufficient_length() {
     hexstrings::to_hex_string(256, 1);
   }
