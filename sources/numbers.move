@@ -51,14 +51,38 @@ module razor_libs::numbers {
   }
 
   public fun is_triangular(num: u64): bool {
-    let sum = 0;
-    let n = 1;
-    while (sum < num) {
-      sum = sum + n;
-      if (sum == num) return true;
-      n = n + 1;
+    // Using the quadratic formula: n^2 + n - 2*num = 0
+    // A triangular number can be represented as n*(n+1)/2 = num
+    // We need to find if there exists a positive integer n that satisfies this
+    
+    // 8*num + 1 needs to be a perfect square
+    // And (-1 + sqrt(8*num + 1))/2 needs to be a whole number
+    
+    if (num == 0) return true;
+    
+    // Check if 8*num + 1 would overflow
+    if (num > (18446744073709551615u64 - 1) / 8) return false;
+    
+    let discriminant = 8 * num + 1;
+    if (!is_perfect_square(discriminant)) return false;
+    
+    // Calculate (-1 + sqrt(8*num + 1))/2
+    let sqrt_disc = ((is_perfect_square_root(discriminant) as u64) - 1) / 2;
+    
+    // Check if this is the correct n by calculating n*(n+1)/2
+    sqrt_disc * (sqrt_disc + 1) / 2 == num
+  }
+
+  // Helper function to get the square root if it's a perfect square
+  fun is_perfect_square_root(num: u64): u64 {
+    let i: u64 = 0;
+    while (i * i <= num) {
+        if (i * i == num) {
+            return i
+        };
+        i = i + 1;
     };
-    false
+    0
   }
 
   public fun is_happy(num: u64): bool {

@@ -57,7 +57,7 @@ module razor_libs::fullmath {
   }
 
   public fun mul_div(a: u256, b: u256, denominator: u256): u256 {
-    let r = full_mul(a, b) / (denominator);
+    let r = (full_mul(a, b)) / (denominator);
     r
   }
 

@@ -11,6 +11,7 @@ module razor_libs::path {
   const NEXT_OFFSET: u64 = 35;
   const POP_OFFSET: u64 = 67;
   const MULTIPLE_POOLS_MIN_LENGTH: u64 = 102;
+  const MAX_U64: u64 = 18446744073709551615;
 
   const ERR_OVERFLOW: u64 = 0;
   const ERR_OUT_OF_BOUNDS: u64 = 1;
@@ -24,8 +25,8 @@ module razor_libs::path {
   }
 
   public fun to_address(bytes: vector<u8>, start: u64): address {
-    // Check for overflow
-    assert!(start + ADDR_SIZE >= start, ERR_OVERFLOW);
+    // Check for overflow - prevent overflow by checking against MAX_U64
+    assert!(start <= MAX_U64 - ADDR_SIZE, ERR_OVERFLOW);
 
     // Check bounds
     assert!(vector::length(&bytes) >= start + ADDR_SIZE, ERR_OUT_OF_BOUNDS);
@@ -43,21 +44,18 @@ module razor_libs::path {
 
   public fun to_uint64(bytes: vector<u8>, start: u64): u64 {
     // Check for overflow
-    assert!(start + 3 >= start, ERR_OVERFLOW);
+    assert!(start <= MAX_U64 - 3, ERR_OVERFLOW);
         
     // Check bounds
     assert!(vector::length(&bytes) >= start + 3, ERR_OUT_OF_BOUNDS);
 
-    // Extract 3 bytes and convert to u64 (as Move doesn't have u24)
-    let result = vector::empty<u8>();
-    let i = 0;
-    while (i < 3) {
-      let byte_val = *vector::borrow(&bytes, start + i);
-      vector::push_back(&mut result, byte_val);
-      i = i + 1;
-    };
+    // Convert 3 bytes to u64 manually (little-endian)
+    let b0 = (*vector::borrow(&bytes, start) as u64);
+    let b1 = (*vector::borrow(&bytes, start + 1) as u64);
+    let b2 = (*vector::borrow(&bytes, start + 2) as u64);
 
-    from_bcs::to_u64(result)
+    // Combine bytes in little-endian: b0 | (b1 << 8) | (b2 << 16)
+    b0 | (b1 << 8) | (b2 << 16)
   }
 
   public fun decode_first_pool(path: vector<u8>): (address, address, u64) {
@@ -79,13 +77,10 @@ module razor_libs::path {
         i = i + 1;
     };
 
-    // Encode fee (u64, but only store the lower 3 bytes as in the to_uint64 function)
-    let fee_bytes = bcs::to_bytes(&fee);
-    let j = 0;
-    while (j < FEE_SIZE) {
-        vector::push_back(&mut encoded_pool, *vector::borrow(&fee_bytes, j));
-        j = j + 1;
-    };
+    // Encode fee in little-endian format (3 bytes)
+    vector::push_back(&mut encoded_pool, ((fee & 0xFF) as u8));
+    vector::push_back(&mut encoded_pool, (((fee >> 8) & 0xFF) as u8));
+    vector::push_back(&mut encoded_pool, (((fee >> 16) & 0xFF) as u8));
 
     // Encode token_out (address, 32 bytes)
     let token_out_bytes = bcs::to_bytes(&token_out);
@@ -103,6 +98,6 @@ module razor_libs::path {
   }
 
   public fun skip_token(path: vector<u8>): vector<u8> {
-    vector::slice(&path, NEXT_OFFSET, vector::length(&path) - NEXT_OFFSET)
+    vector::slice(&path, POP_OFFSET, vector::length(&path))
   }
 }

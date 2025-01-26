@@ -45,7 +45,7 @@ module razor_libs::liquidity_amounts {
 
     let liquidity;
     if (sqrt_ratio <= sqrt_ratio_a) {
-      liquidity = get_liquidity_for_amount0(sqrt_ratio_a, sqrt_ratio_a, amount0);
+      liquidity = get_liquidity_for_amount0(sqrt_ratio_a, sqrt_ratio_b, amount0);
     } else if (sqrt_ratio < sqrt_ratio_b) {
       let liquidity0 = get_liquidity_for_amount0(sqrt_ratio, sqrt_ratio_b, amount0);
       let liquidity1 = get_liquidity_for_amount1(sqrt_ratio_a, sqrt_ratio, amount1);
@@ -55,7 +55,6 @@ module razor_libs::liquidity_amounts {
       } else {
         liquidity1
       };
-
     } else {
       liquidity = get_liquidity_for_amount1(sqrt_ratio_a, sqrt_ratio_b, amount1);
     };

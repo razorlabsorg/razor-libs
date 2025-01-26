@@ -6,6 +6,8 @@ authors = []
 [addresses]
 std = "0x1"
 razor_libs = "_"
+alice = "0xa11ce"
+bob = "0xb0b"
 
 [dev-addresses]
 
