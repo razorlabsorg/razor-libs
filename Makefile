@@ -19,32 +19,25 @@ clean:
 
 compile:
 	aptos move compile \
-	--skip-fetch-latest-git-deps \
-	--move-2 \
 	--save-metadata \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
 
 test:
 	aptos move test \
-	--skip-fetch-latest-git-deps \
 	--ignore-compile-warnings \
-	--move-2 \
 	--skip-attribute-checks \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
 publish:
 	aptos move deploy-object \
-	--move-2 \
-	--skip-fetch-latest-git-deps \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--address-name razor_libs
 
 upgrade:
 	aptos move upgrade-object \
-	--skip-fetch-latest-git-deps \
 	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
@@ -52,7 +45,5 @@ upgrade:
 
 docs:
 	aptos move document \
-	--move-2 \
-	--skip-fetch-latest-git-deps \
 	--skip-attribute-checks \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)"

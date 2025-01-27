@@ -8,7 +8,7 @@ std = "0x1"
 razor_libs = "_"
 alice = "0xa11ce"
 bob = "0xb0b"
-admin = "0x1234"
+admin = "0x0133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a"
 
 [dev-addresses]
 
