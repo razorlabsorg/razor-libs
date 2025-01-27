@@ -64,18 +64,27 @@ module razor_libs::sort {
     assert!(tokenA_addr != tokenB_addr, ERROR_IDENTICAL_ADDRESSES);
     assert!(tokenA_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
     assert!(tokenB_addr != tokenC_addr, ERROR_IDENTICAL_ADDRESSES);
+    
     let (token0, token1, token2);
     if (is_sorted_two(tokenA, tokenB)) {
-      if (is_sorted_two(tokenB, tokenC)) {
-        (token0, token1, token2) = (tokenA, tokenB, tokenC)
+      if (is_sorted_two(tokenA, tokenC)) {
+        if (is_sorted_two(tokenB, tokenC)) {
+          (token0, token1, token2) = (tokenA, tokenB, tokenC)
+        } else {
+          (token0, token1, token2) = (tokenA, tokenC, tokenB)
+        }
       } else {
-        (token0, token1, token2) = (tokenA, tokenC, tokenB)
+        (token0, token1, token2) = (tokenC, tokenA, tokenB)
       }
     } else {
       if (is_sorted_two(tokenB, tokenC)) {
-        (token0, token1, token2) = (tokenB, tokenA, tokenC)
+        if (is_sorted_two(tokenA, tokenC)) {
+          (token0, token1, token2) = (tokenB, tokenA, tokenC)
+        } else {
+          (token0, token1, token2) = (tokenB, tokenC, tokenA)
+        }
       } else {
-        (token0, token1, token2) = (tokenB, tokenC, tokenA)
+        (token0, token1, token2) = (tokenC, tokenB, tokenA)
       }
     };
     (token0, token1, token2)
@@ -188,6 +197,4 @@ module razor_libs::sort {
 
       sorted
   }
-
-  
 }
