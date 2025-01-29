@@ -15,6 +15,7 @@
     "sqrtpricemath",
     "swapmath",
     "tbtc",
-    "tickbitmap"
+    "tickbitmap",
+    "treemath"
   ]
 }

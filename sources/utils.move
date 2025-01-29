@@ -47,7 +47,7 @@ module razor_libs::utils {
     assert!(reserve_in > 0 && reserve_out > 0, ERROR_INSUFFICIENT_LIQUIDITY);
     
     // Add check for maximum input to prevent overflow
-    assert!(amount_in <= MAX_U64 / 9975, ERROR_OVERFLOW); // Need to define MAX_U64
+    assert!(amount_in <= MAX_U64 / 9975, ERROR_OVERFLOW);
     
     let amount_in_with_fee = (amount_in as u128) * 9975u128;
     let numerator = amount_in_with_fee * (reserve_out as u128);
