@@ -25,8 +25,6 @@ compile:
 
 test:
 	aptos move test \
-	--ignore-compile-warnings \
-	--skip-attribute-checks \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
@@ -45,5 +43,4 @@ upgrade:
 
 docs:
 	aptos move document \
-	--skip-attribute-checks \
-	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
+	--named-addresses "razor_libs=$(LIBS_ADDRESS)"

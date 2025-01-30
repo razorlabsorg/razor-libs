@@ -31,6 +31,8 @@ module razor_libs::weth_token {
 
     const MAX_SUPPLY: u128 = 100000000000000000;
 
+    const ADMIN_ADDRESS: address = @0x0133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a;
+
     // TODO Add Supply cap
 
     #[resource_group_member(group = aptos_framework::object::ObjectGroup)]
@@ -143,7 +145,7 @@ module razor_libs::weth_token {
 
         let metadata_object_signer = &object::generate_signer(constructor_ref);
         move_to(metadata_object_signer, Ownership {
-            owner: @admin,
+            owner: ADMIN_ADDRESS,
         });
 
         move_to(metadata_object_signer, Management {
