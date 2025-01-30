@@ -1,7 +1,7 @@
 
-<a id="0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96"></a>
+<a id="0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96"></a>
 
-# Module `0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129::fixedpoint96`
+# Module `0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6::fixedpoint96`
 
 @title FixedPoint96
 @notice A library for handling binary fixed point numbers, see https://en.wikipedia.org/wiki/Q_(number_format)
@@ -9,8 +9,8 @@
 
 
 -  [Constants](#@Constants_0)
--  [Function `resolution`](#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_resolution)
--  [Function `q96`](#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_q96)
+-  [Function `resolution`](#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_resolution)
+-  [Function `q96`](#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_q96)
 
 
 <pre><code></code></pre>
@@ -22,40 +22,40 @@
 ## Constants
 
 
-<a id="0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_Q96"></a>
+<a id="0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_Q96"></a>
 
 
 
-<pre><code><b>const</b> <a href="fixedpoint96.md#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_Q96">Q96</a>: u256 = 79228162514264337593543950336;
+<pre><code><b>const</b> <a href="fixedpoint96.md#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_Q96">Q96</a>: u256 = 79228162514264337593543950336;
 </code></pre>
 
 
 
-<a id="0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_RESOLUTION"></a>
+<a id="0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_RESOLUTION"></a>
 
 
 
-<pre><code><b>const</b> <a href="fixedpoint96.md#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_RESOLUTION">RESOLUTION</a>: u8 = 96;
+<pre><code><b>const</b> <a href="fixedpoint96.md#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_RESOLUTION">RESOLUTION</a>: u8 = 96;
 </code></pre>
 
 
 
-<a id="0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_resolution"></a>
+<a id="0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_resolution"></a>
 
 ## Function `resolution`
 
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint96.md#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_resolution">resolution</a>(): u8
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint96.md#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_resolution">resolution</a>(): u8
 </code></pre>
 
 
 
-<a id="0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_q96"></a>
+<a id="0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_q96"></a>
 
 ## Function `q96`
 
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint96.md#0x7aa8f5f1438203d93ea77d6ab39a2247034eacf8b543215db12775278bba6129_fixedpoint96_q96">q96</a>(): u256
+<pre><code><b>public</b> <b>fun</b> <a href="fixedpoint96.md#0xccc5c4272c290d2315a6b34a06715f0b3d563cffae88f6a779140e774e3c35d6_fixedpoint96_q96">q96</a>(): u256
 </code></pre>
