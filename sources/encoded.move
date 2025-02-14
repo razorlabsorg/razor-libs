@@ -52,16 +52,16 @@ module razor_libs::encoded {
 
   public fun decode_u16(encoded: vector<u8>, offset: u8): u16 {
     let value = decode(encoded, MASK_UINT16(), offset);
-    value as u16
+    (value as u16)
   }
 
   public fun decode_u24(encoded: vector<u8>, offset: u8): u32 {
     let value = decode(encoded, MASK_UINT24(), offset);
-    value as u32
+    (value as u32)
   }
 
   public fun decode_u64(encoded: vector<u8>, offset: u8): u64 {
     let value = decode(encoded, MASK_UINT64(), offset);
-    value as u64
+    (value as u64)
   }
 }

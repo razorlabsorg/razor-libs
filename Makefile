@@ -18,29 +18,29 @@ clean:
 # ===================== PACKAGE AMM ===================== #
 
 compile:
-	aptos move compile \
+	movement move compile \
 	--save-metadata \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
 
 test:
-	aptos move test \
+	movement move test \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
 publish:
-	aptos move deploy-object \
+	movement move create-object-and-publish-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--address-name razor_libs
 
 upgrade:
-	aptos move upgrade-object \
+	movement move upgrade-object \
 	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--object-address $(LIBS_ADDRESS)
 
 docs:
-	aptos move document \
+	movement move document \
 	--named-addresses "razor_libs=$(LIBS_ADDRESS)"
