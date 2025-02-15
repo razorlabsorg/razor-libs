@@ -2,6 +2,7 @@
 name = "RazorLibs"
 version = "1.0.0"
 authors = []
+upgrade_policy = "compatible"
 
 [addresses]
 std = "0x1"

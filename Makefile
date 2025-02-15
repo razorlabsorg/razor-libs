@@ -8,8 +8,8 @@ APTOS_NETWORK ?= custom
 ARTIFACTS_LEVEL ?= sparse
 DEFAULT_FUND_AMOUNT ?= 100000000
 DEFAULT_FUNDER_PRIVATE_KEY ?= 0x0
-DEV_ACCOUNT ?= 0x0133e0a39bdfcf5bbde2b1f4def9f36b2842693345ccc49d6aa6f2ee8c7ccf9a
-LIBS_ADDRESS ?= 0x13253effc048095b933b0d2ffe307913b074fb3b9f56780cc2495e18f0e6e14d
+DEV_ACCOUNT ?= 0xfaded96b72a03b2ed9e2b2dc0bef0642d63e07fd7b1eeeac047188eb1ef34dd6
+LIBS_ADDRESS ?= 0x16f014d37f7d8455c49d587bfc93a26eba6e3f02f1eb391e6afa620b8ffdd91d
 
 # ============================= CLEAN ============================= #
 clean:
@@ -28,18 +28,33 @@ test:
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
-publish:
+publish-testnet:
 	movement move create-object-and-publish-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--address-name razor_libs
 
-upgrade:
-	movement move upgrade-object \
+publish-mainnet:
+	movement move create-object-and-publish-package \
+	--included-artifacts ${ARTIFACTS_LEVEL} \
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
+	--address-name razor_libs \
+	--profile mainnet
+
+upgrade-testnet:
+	movement move upgrade-object-package \
 	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--object-address $(LIBS_ADDRESS)
+
+upgrade-mainnet:
+	movement move upgrade-object-package \
+	--address-name razor_libs \
+	--included-artifacts ${ARTIFACTS_LEVEL} \
+	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
+	--object-address $(LIBS_ADDRESS) \
+	--profile mainnet
 
 docs:
 	movement move document \
