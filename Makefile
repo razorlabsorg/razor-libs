@@ -43,16 +43,14 @@ publish-mainnet:
 
 upgrade-testnet:
 	movement move upgrade-object-package \
-	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
-	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
+	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
 	--object-address $(LIBS_ADDRESS)
 
 upgrade-mainnet:
 	movement move upgrade-object-package \
-	--address-name razor_libs \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
-	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
+	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
 	--object-address $(LIBS_ADDRESS) \
 	--profile mainnet
 
