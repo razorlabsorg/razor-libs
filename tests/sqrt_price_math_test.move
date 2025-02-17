@@ -106,13 +106,13 @@ module razor_libs::sqrt_price_math_test {
   }
 
   #[test]
-  #[expected_failure(abort_code = 1002)]
+  #[expected_failure(abort_code = 1002, location = razor_libs::sqrt_price_math)]
   fun test_get_next_sqrt_price_from_input_invalid_sqrt_price() {
     sqrt_price_math::get_next_sqrt_price_from_input(0, 1000000, 100000, true);
   }
 
   #[test]
-  #[expected_failure(abort_code = 1002)]
+  #[expected_failure(abort_code = 1002, location = razor_libs::sqrt_price_math)]
   fun test_get_next_sqrt_price_from_input_invalid_liquidity() {
     sqrt_price_math::get_next_sqrt_price_from_input(79228162514264337593543950336, 0, 100000, true);
   }

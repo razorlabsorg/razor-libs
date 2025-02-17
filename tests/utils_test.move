@@ -27,7 +27,6 @@ module razor_libs::utils_test {
   #[test]
   fun test_get_amount_out_normal() {
     let amount_out = utils::get_amount_out(100, 1000, 2000);
-    std::debug::print(&amount_out);
     assert!(amount_out == 181, 0); // Expected value considering 0.25% fee
   }
 

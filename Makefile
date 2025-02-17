@@ -24,7 +24,7 @@ compile:
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)"
 
 test:
-	movement move test \
+	aptos move test \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--coverage
 
