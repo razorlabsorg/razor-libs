@@ -45,6 +45,7 @@ upgrade-testnet:
 	movement move upgrade-object-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
+	--override-size-check \
 	--object-address $(LIBS_ADDRESS)
 
 upgrade-mainnet:
@@ -52,6 +53,7 @@ upgrade-mainnet:
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
 	--object-address $(LIBS_ADDRESS) \
+	--override-size-check \
 	--profile mainnet
 
 docs:
