@@ -32,21 +32,24 @@ publish-testnet:
 	movement move create-object-and-publish-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
-	--address-name razor_libs
+	--address-name razor_libs \
+	--assume-yes
 
 publish-mainnet:
 	movement move create-object-and-publish-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(DEV_ACCOUNT)" \
 	--address-name razor_libs \
-	--profile mainnet
+	--profile mainnet \
+	--assume-yes
 
 upgrade-testnet:
 	movement move upgrade-object-package \
 	--included-artifacts ${ARTIFACTS_LEVEL} \
 	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
 	--override-size-check \
-	--object-address $(LIBS_ADDRESS)
+	--object-address $(LIBS_ADDRESS) \
+	--assume-yes
 
 upgrade-mainnet:
 	movement move upgrade-object-package \
@@ -54,7 +57,8 @@ upgrade-mainnet:
 	--named-addresses "razor_libs=$(LIBS_ADDRESS)" \
 	--object-address $(LIBS_ADDRESS) \
 	--override-size-check \
-	--profile mainnet
+	--profile mainnet \
+	--assume-yes
 
 docs:
 	movement move document \
