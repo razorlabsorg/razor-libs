@@ -14,7 +14,7 @@ bob = "0xb0b"
 
 [dependencies.AptosFramework]
 git = "https://github.com/aptos-labs/aptos-framework.git"
-rev = "mainnet"
+rev = "aptos-release-v1.23"
 subdir = "aptos-framework"
 
 [dev-dependencies]
